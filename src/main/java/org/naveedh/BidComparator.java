@@ -2,10 +2,10 @@ package org.naveedh;
 
 import java.util.Comparator;
 
-public class BidComparator implements Comparator<Integer> {
+public class BidComparator implements Comparator<PQObject> {
 
     @Override
-    public int compare(Integer o1, Integer o2) {
-        return o2-o1;
+    public int compare(PQObject o1, PQObject o2) {
+        return o2.price - o1.price;
     }
 }
