@@ -138,15 +138,6 @@ This project simulates a simple order matching engine for educational purposes. 
 
 This scenario illustrates the core functionality of an order matching engine, including price and time priority, and how orders are partially or fully matched based on available market conditions.
 
-
-Program Structure
------------------
-
--   **OrderMatchingEngine.java**: Contains the main method and orchestrates the order matching process.
--   **Order.java**: Defines the `Order` class, representing individual orders.
--   **OrderBook.java**: Manages the collection of buy and sell orders.
--   **Enums.java**: Contains enumerations for order sides and other constants.
-
 Customization
 -------------
 
@@ -156,7 +147,6 @@ Customization
      - Add Multi Instrument Support
 -   **Performance Optimization**: 
      - Use high-performant data structure
-     - Add multi-threading wherever possible
 
 Limitations
 -----------
@@ -174,7 +164,7 @@ Contributions are welcome! Please open an issue or submit a pull request for any
 Contact
 -------
 
-For questions or support, please create a issue
+For questions or support, please create a new discussion
 
 Acknowledgments
 ---------------
