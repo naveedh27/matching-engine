@@ -13,6 +13,9 @@ public class OrderMatchingEnginePriorityQueue {
     static PriorityQueue<PQObject> buyStack = new PriorityQueue<>(bidComparator);
     static PriorityQueue<PQObject> sellStack = new PriorityQueue<>(sellComparator);
 
+    static Comparator<Order> orderComparator = (o1, o2) -> o1.side == BUY ? o1.price - o2.price : o2.price - o1.price;
+
+
     public static void main(String[] args) {
 
        /* addOrder(BUY, 150, 20);
@@ -45,9 +48,9 @@ public class OrderMatchingEnginePriorityQueue {
 
         //scenario1();
         //scenario2();
-        //scenario3();
+        scenario3();
         //scenario4();
-        scenario5();
+        //scenario5();
 
         printOrderBook(BUY, buyStack);
         printOrderBook(SELL, sellStack);
@@ -206,6 +209,7 @@ public class OrderMatchingEnginePriorityQueue {
         System.out.println("---------------------------------------------------------------------------------------------------");
         orderBook.stream()
                 .map(pqObject -> pqObject.order)
+                .sorted(orderComparator)
                 .forEach(System.out::println);
         System.out.println();
     }
@@ -227,6 +231,8 @@ public class OrderMatchingEnginePriorityQueue {
                 sellStack.add(new PQObject(order.getPrice(), order));
             }
         }
+        printOrderBook(BUY, buyStack);
+        printOrderBook(SELL, sellStack);
     }
 
     public static void match(Order order, List<Trade> trades) {
@@ -278,7 +284,7 @@ public class OrderMatchingEnginePriorityQueue {
                     }
                 }
             }
-            if (order.getOpenQty() > 0 && !buyStack.isEmpty() && buyStack.peek().price <= order.getPrice()) {
+            if (order.getOpenQty() > 0 && !buyStack.isEmpty() && buyStack.peek().price >= order.getPrice()) {
                 match(order, trades);
             }
         }
